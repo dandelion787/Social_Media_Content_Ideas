@@ -1,0 +1,1537 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Instagram Content Plan — Traction Studios</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600&family=IBM+Plex+Sans:wght@300;400;500&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --cream:        #f5f0e8;
+    --paper:        #ede8dc;
+    --warm-mid:     #d9d2c2;
+    --border:       #c8bfac;
+    --ink:          #1e1b17;
+    --ink-mid:      #4a4438;
+    --ink-light:    #8a7f70;
+    --accent:       #b85c2a;
+    --accent-light: #e8d5c4;
+    --green:        #4a7c59;
+    --green-light:  #ddeee3;
+    --blue:         #2a4a78;
+    --blue-light:   #dce5f0;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: 'IBM Plex Sans', sans-serif;
+    background: var(--cream);
+    color: var(--ink);
+    font-size: 14px;
+    line-height: 1.6;
+  }
+
+  /* ─── HEADER ─── */
+  header {
+    border-bottom: 2px solid var(--ink);
+    padding: 28px 6vw 24px;
+    display: grid;
+    grid-template-columns: 1fr auto;
+    align-items: end;
+    gap: 24px;
+    background: var(--cream);
+  }
+  .header-kicker {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--ink-light);
+    margin-bottom: 8px;
+  }
+  .header-title {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(28px, 4vw, 48px);
+    font-weight: 500;
+    line-height: 1.05;
+    letter-spacing: -0.01em;
+  }
+  .header-title span { color: var(--accent); }
+  .header-meta {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 0.1em;
+    color: var(--ink-light);
+    line-height: 1.9;
+    text-transform: uppercase;
+    text-align: right;
+  }
+
+  /* ─── STATS STRIP ─── */
+  .stats-strip {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    border-bottom: 1px solid var(--border);
+    background: var(--paper);
+  }
+  .stat-cell {
+    padding: 18px 3vw;
+    border-right: 1px solid var(--border);
+  }
+  .stat-cell:last-child { border-right: none; }
+  .stat-n {
+    font-family: 'Playfair Display', serif;
+    font-size: 26px;
+    font-weight: 600;
+    line-height: 1;
+    letter-spacing: -0.02em;
+  }
+  .stat-n em { color: var(--accent); font-style: normal; }
+  .stat-l {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 9.5px;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--ink-light);
+    margin-top: 5px;
+  }
+
+  /* ─── LAYOUT ─── */
+  .body-wrap {
+    display: grid;
+    grid-template-columns: 220px 1fr;
+    min-height: calc(100vh - 160px);
+  }
+
+  /* ─── SIDEBAR ─── */
+  aside {
+    border-right: 1px solid var(--border);
+    padding: 28px 20px;
+    position: sticky;
+    top: 0;
+    height: 100vh;
+    overflow-y: auto;
+    background: var(--paper);
+  }
+  aside::-webkit-scrollbar { width: 4px; }
+  aside::-webkit-scrollbar-track { background: transparent; }
+  aside::-webkit-scrollbar-thumb { background: var(--border); border-radius: 2px; }
+
+  .aside-label {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 9.5px;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: var(--ink-light);
+    margin-bottom: 10px;
+  }
+  .aside-divider {
+    border: none;
+    border-top: 1px solid var(--border);
+    margin: 20px 0;
+  }
+  .nav-list { list-style: none; display: flex; flex-direction: column; gap: 2px; }
+  .nav-list a {
+    display: flex;
+    align-items: baseline;
+    gap: 8px;
+    text-decoration: none;
+    color: var(--ink-mid);
+    font-size: 12px;
+    padding: 5px 8px;
+    border-radius: 3px;
+    transition: background 0.15s, color 0.15s;
+    line-height: 1.4;
+  }
+  .nav-list a:hover { background: var(--accent-light); color: var(--ink); }
+  .nav-list a .n {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 9px;
+    color: var(--accent);
+    flex-shrink: 0;
+  }
+  .nav-list a.section-link {
+    font-weight: 500;
+    color: var(--ink);
+    font-size: 11.5px;
+    letter-spacing: 0.02em;
+  }
+  .legend-row {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin-bottom: 7px;
+    font-size: 11.5px;
+    color: var(--ink-mid);
+  }
+  .legend-dot { width: 8px; height: 8px; border-radius: 50%; flex-shrink: 0; }
+  .dot-carousel { background: var(--green); }
+  .dot-single   { background: var(--accent); }
+  .dot-reel     { background: var(--blue); }
+
+  /* ─── MAIN ─── */
+  main { padding: 0; }
+
+  /* ─── SECTION HEADER ─── */
+  .section-head {
+    padding: 24px 6vw 20px;
+    border-bottom: 1px solid var(--border);
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+    gap: 16px;
+    background: var(--cream);
+  }
+  .section-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 20px;
+    font-weight: 500;
+  }
+  .section-sub {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--ink-light);
+  }
+
+  /* ═══════════════════════════════════════
+     CONTENT IDEAS BANK
+  ═══════════════════════════════════════ */
+
+  .ideas-intro {
+    padding: 24px 6vw;
+    border-bottom: 1px solid var(--border);
+    background: var(--paper);
+  }
+  .ideas-intro p {
+    font-size: 13.5px;
+    color: var(--ink-mid);
+    max-width: 680px;
+    line-height: 1.7;
+  }
+  .ideas-intro strong { color: var(--ink); font-weight: 500; }
+
+  /* Topic category grid */
+  .topics-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    border-bottom: 2px solid var(--border);
+  }
+
+  .topic-card {
+    border-right: 1px solid var(--border);
+    border-bottom: 1px solid var(--border);
+    padding: 24px 28px;
+  }
+  .topic-card:nth-child(even) { border-right: none; }
+  .topic-card:nth-last-child(-n+2) { border-bottom: none; }
+
+  .topic-card-header {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: 12px;
+    margin-bottom: 10px;
+  }
+
+  .topic-icon-title {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+
+  .topic-emoji {
+    font-size: 20px;
+    line-height: 1;
+    flex-shrink: 0;
+  }
+
+  .topic-name {
+    font-family: 'Playfair Display', serif;
+    font-size: 16px;
+    font-weight: 500;
+    line-height: 1.2;
+    color: var(--ink);
+  }
+
+  .topic-freq {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 9px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--ink-light);
+    background: var(--warm-mid);
+    padding: 3px 8px;
+    border-radius: 2px;
+    white-space: nowrap;
+    flex-shrink: 0;
+  }
+
+  .topic-desc {
+    font-size: 12.5px;
+    color: var(--ink-mid);
+    line-height: 1.6;
+    margin-bottom: 14px;
+  }
+
+  .topic-examples-label {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 9px;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 8px;
+  }
+
+  .topic-examples {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+  }
+
+  .topic-examples li {
+    display: flex;
+    gap: 8px;
+    font-size: 12px;
+    color: var(--ink-mid);
+    line-height: 1.45;
+    align-items: flex-start;
+  }
+
+  .topic-examples li::before {
+    content: '—';
+    color: var(--accent);
+    flex-shrink: 0;
+    font-size: 11px;
+    margin-top: 1px;
+  }
+
+  .topic-format-row {
+    margin-top: 14px;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    flex-wrap: wrap;
+  }
+
+  .topic-format-label {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 9px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--ink-light);
+    margin-right: 2px;
+  }
+
+  /* ─── FORMAT TAGS ─── */
+  .fmt {
+    display: inline-block;
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 9px;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    padding: 3px 8px;
+    border-radius: 2px;
+    font-weight: 500;
+    white-space: nowrap;
+  }
+  .fmt-c { background: var(--green-light);  color: #2e6644; border: 1px solid #b8d9c4; }
+  .fmt-s { background: var(--accent-light); color: #8a3a12; border: 1px solid #e0c0a8; }
+  .fmt-r { background: var(--blue-light);   color: var(--blue);  border: 1px solid #b4c8e4; }
+
+  /* ─── TABLE ─── */
+  .table-wrap { border-bottom: 2px solid var(--border); overflow-x: auto; }
+  table { width: 100%; border-collapse: collapse; }
+  thead tr { border-bottom: 1px solid var(--border); background: var(--paper); }
+  th {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 9.5px;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--ink-light);
+    padding: 12px 20px;
+    text-align: left;
+    font-weight: 400;
+  }
+  td { padding: 13px 20px; border-bottom: 1px solid var(--warm-mid); vertical-align: middle; font-size: 13px; }
+  tr:last-child td { border-bottom: none; }
+  tbody tr:hover td { background: var(--paper); }
+  .td-num { font-family: 'IBM Plex Mono', monospace; font-size: 11px; color: var(--accent); font-weight: 500; width: 36px; }
+  .td-topic { font-weight: 400; color: var(--ink); }
+  .td-bucket { font-size: 12px; color: var(--ink-mid); white-space: nowrap; }
+
+  /* ─── POST ROWS ─── */
+  .post-row {
+    border-bottom: 1px solid var(--border);
+    display: grid;
+    grid-template-columns: 56px 1fr;
+  }
+  .post-row:last-child { border-bottom: none; }
+
+  .post-num-col {
+    border-right: 1px solid var(--border);
+    background: var(--paper);
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    padding-top: 32px;
+  }
+  .post-num-label {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 11px;
+    color: var(--accent);
+    font-weight: 500;
+    letter-spacing: 0.05em;
+    writing-mode: vertical-rl;
+    transform: rotate(180deg);
+    user-select: none;
+  }
+
+  .post-content {
+    padding: 28px 6vw;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 32px;
+  }
+
+  .post-bucket {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 9.5px;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: var(--ink-light);
+    margin-bottom: 10px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+  .post-bucket::before {
+    content: '';
+    display: block;
+    width: 20px;
+    height: 1px;
+    background: var(--accent);
+  }
+
+  .post-format-row { display: flex; align-items: center; gap: 6px; margin-bottom: 12px; }
+
+  .post-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 17px;
+    font-weight: 500;
+    line-height: 1.35;
+    color: var(--ink);
+    margin-bottom: 16px;
+  }
+
+  .post-research {
+    background: var(--accent-light);
+    border-left: 2px solid var(--accent);
+    padding: 12px 14px;
+    margin-bottom: 14px;
+  }
+  .research-kicker {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 9px;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 5px;
+  }
+  .research-body { font-size: 12.5px; color: var(--ink-mid); line-height: 1.6; }
+  .research-body strong { color: var(--ink); font-weight: 500; }
+
+  .why-works {
+    border: 1px solid var(--border);
+    padding: 12px 14px;
+    background: var(--cream);
+  }
+  .why-kicker {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 9px;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--ink-light);
+    margin-bottom: 5px;
+  }
+  .why-body { font-size: 12.5px; color: var(--ink-mid); line-height: 1.6; }
+
+  .slides-label {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 9.5px;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--ink-light);
+    margin-bottom: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  .slides-list {
+    list-style: none;
+    border: 1px solid var(--border);
+    margin-bottom: 14px;
+  }
+  .slide-item {
+    display: flex;
+    border-bottom: 1px solid var(--warm-mid);
+    font-size: 12.5px;
+  }
+  .slide-item:last-child { border-bottom: none; }
+  .slide-i {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 9.5px;
+    color: var(--accent);
+    font-weight: 500;
+    padding: 10px 12px;
+    border-right: 1px solid var(--warm-mid);
+    min-width: 38px;
+    text-align: center;
+    background: var(--paper);
+    flex-shrink: 0;
+    display: flex;
+    align-items: flex-start;
+    justify-content: center;
+    padding-top: 11px;
+  }
+  .slide-t { padding: 10px 14px; color: var(--ink-mid); line-height: 1.5; }
+
+  .post-cta {
+    background: var(--ink);
+    color: var(--cream);
+    padding: 11px 14px;
+    font-size: 12.5px;
+    font-style: italic;
+    display: flex;
+    align-items: flex-start;
+    gap: 10px;
+  }
+  .cta-icon { font-style: normal; flex-shrink: 0; }
+
+  /* ─── FOOTER ─── */
+  footer {
+    border-top: 2px solid var(--ink);
+    padding: 20px 6vw;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 12px;
+    background: var(--paper);
+  }
+  .footer-brand { font-family: 'Playfair Display', serif; font-size: 16px; font-weight: 500; }
+  .footer-brand span { color: var(--accent); }
+  .footer-meta { font-family: 'IBM Plex Mono', monospace; font-size: 9.5px; letter-spacing: 0.1em; text-transform: uppercase; color: var(--ink-light); }
+
+  /* ═══════════════════════════════════════════
+     RESPONSIVE — full breakpoint system
+     1. Large tablet / small laptop  ≤ 1100px
+     2. Tablet portrait              ≤ 900px
+     3. Large phone / phablet        ≤ 680px
+     4. Mobile                       ≤ 480px
+     5. Small mobile                 ≤ 360px
+  ═══════════════════════════════════════════ */
+
+  /* ── 1. Large tablet / small laptop ── */
+  @media (max-width: 1100px) {
+    /* Tighten the sidebar a touch */
+    .body-wrap { grid-template-columns: 190px 1fr; }
+
+    /* Post two-col content: give left column more breathing room */
+    .post-content { gap: 24px; padding: 24px 4vw; }
+
+    /* Topic cards: reduce internal padding */
+    .topic-card { padding: 20px 22px; }
+
+    /* Stats strip: tighten number size slightly */
+    .stat-n { font-size: 22px; }
+
+    /* Table cells: reduce horizontal padding */
+    th, td { padding-left: 16px; padding-right: 16px; }
+  }
+
+  /* ── 2. Tablet portrait ── */
+  @media (max-width: 900px) {
+    /* Collapse sidebar — goes above main content */
+    .body-wrap {
+      grid-template-columns: 1fr;
+    }
+
+    /* Sidebar: horizontal scrollable nav strip */
+    aside {
+      position: static;
+      height: auto;
+      border-right: none;
+      border-bottom: 2px solid var(--border);
+      padding: 16px 4vw;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 20px;
+      align-items: flex-start;
+    }
+
+    /* Each aside block sits side-by-side */
+    .aside-section-block {
+      flex: 1 1 160px;
+      min-width: 140px;
+    }
+
+    /* Hide the dividers in horizontal layout */
+    .aside-divider { display: none; }
+
+    /* Nav list: horizontal pill row */
+    .nav-list {
+      flex-direction: row;
+      flex-wrap: wrap;
+      gap: 4px;
+    }
+    .nav-list a {
+      font-size: 11px;
+      padding: 4px 10px;
+      background: var(--warm-mid);
+      border-radius: 20px;
+      color: var(--ink-mid);
+      white-space: nowrap;
+    }
+    .nav-list a:hover { background: var(--accent-light); color: var(--ink); }
+    .nav-list a.section-link {
+      background: var(--ink);
+      color: var(--cream);
+      font-size: 11px;
+    }
+    .nav-list a.section-link:hover { background: var(--accent); }
+    .nav-list a .n { display: none; }
+
+    /* Legend: horizontal */
+    .aside-legend-row-group {
+      display: flex;
+      gap: 12px;
+      flex-wrap: wrap;
+    }
+    .legend-row { margin-bottom: 0; }
+
+    /* Stats: 2×2 grid */
+    .stats-strip { grid-template-columns: 1fr 1fr; }
+    .stat-cell:nth-child(2) { border-right: none; }
+    .stat-cell:nth-child(3) { border-top: 1px solid var(--border); }
+    .stat-cell:nth-child(4) { border-top: 1px solid var(--border); border-right: none; }
+
+    /* Topic cards: single column */
+    .topics-grid { grid-template-columns: 1fr; }
+    .topic-card {
+      border-right: none !important;
+      border-bottom: 1px solid var(--border) !important;
+    }
+    .topic-card:last-child { border-bottom: none !important; }
+
+    /* Post rows: collapse the numbered side column */
+    .post-row { grid-template-columns: 40px 1fr; }
+    .post-num-label { font-size: 9px; }
+
+    /* Post content: stack left/right columns */
+    .post-content {
+      grid-template-columns: 1fr;
+      gap: 20px;
+      padding: 20px 4vw;
+    }
+
+    /* Section head: allow wrapping */
+    .section-head { flex-wrap: wrap; gap: 6px; }
+    .section-sub { font-size: 9px; }
+
+    /* Table: let it scroll horizontally on tablet */
+    .table-wrap { overflow-x: auto; -webkit-overflow-scrolling: touch; }
+    table { min-width: 520px; }
+  }
+
+  /* ── 3. Large phone / phablet ── */
+  @media (max-width: 680px) {
+    /* Header: stack vertically */
+    header {
+      grid-template-columns: 1fr;
+      gap: 14px;
+      padding: 22px 5vw 18px;
+    }
+    .header-meta { text-align: left; line-height: 1.7; }
+    .header-title { font-size: clamp(24px, 7vw, 34px); }
+
+    /* Stats: single column */
+    .stats-strip { grid-template-columns: 1fr; }
+    .stat-cell {
+      border-right: none;
+      border-bottom: 1px solid var(--border);
+      padding: 14px 5vw;
+    }
+    .stat-cell:last-child { border-bottom: none; }
+    .stat-n { font-size: 24px; }
+
+    /* Aside: tighter */
+    aside { padding: 14px 5vw; gap: 14px; }
+
+    /* Topics: tighter padding */
+    .topic-card { padding: 18px 5vw; }
+    .topic-name { font-size: 15px; }
+    .topic-desc { font-size: 12px; }
+    .topic-examples li { font-size: 11.5px; }
+
+    /* Post rows: hide the numbered side strip, show number inline */
+    .post-row { grid-template-columns: 1fr; }
+    .post-num-col {
+      display: none;
+    }
+    /* Compensate by showing bucket label with the post number */
+    .post-bucket::after {
+      content: attr(data-num);
+    }
+
+    /* Post content: full width, tighter padding */
+    .post-content { padding: 18px 5vw; }
+    .post-title { font-size: 15px; }
+
+    /* Research and why blocks: tighter */
+    .post-research, .why-works { padding: 10px 12px; }
+    .research-body, .why-body { font-size: 12px; }
+
+    /* Slides list */
+    .slide-t { font-size: 12px; padding: 9px 12px; }
+    .slide-i { min-width: 32px; font-size: 9px; }
+
+    /* CTA block */
+    .post-cta { font-size: 12px; padding: 10px 12px; }
+
+    /* Section head */
+    .section-head { padding: 16px 5vw 14px; }
+    .section-title { font-size: 17px; }
+
+    /* Ideas intro */
+    .ideas-intro { padding: 16px 5vw; }
+    .ideas-intro p { font-size: 13px; }
+
+    /* Table */
+    th { padding: 10px 12px; }
+    td { padding: 11px 12px; font-size: 12px; }
+    .td-bucket { display: none; }
+
+    /* Footer */
+    footer {
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 6px;
+      padding: 16px 5vw;
+    }
+  }
+
+  /* ── 4. Mobile ── */
+  @media (max-width: 480px) {
+    /* Base font size down a touch */
+    body { font-size: 13px; }
+
+    /* Header */
+    header { padding: 18px 5vw 16px; }
+    .header-kicker { font-size: 9px; letter-spacing: 0.12em; }
+    .header-title { font-size: clamp(22px, 8vw, 30px); line-height: 1.1; }
+    .header-meta { font-size: 9px; }
+
+    /* Stats */
+    .stat-n { font-size: 22px; }
+    .stat-l { font-size: 9px; }
+
+    /* Aside: compact pill nav */
+    aside { padding: 12px 5vw; }
+    .aside-label { font-size: 8.5px; margin-bottom: 8px; }
+    .nav-list a { font-size: 10.5px; padding: 4px 8px; }
+
+    /* Topic cards */
+    .topic-card { padding: 16px 5vw; }
+    .topic-card-header { gap: 8px; }
+    .topic-emoji { font-size: 18px; }
+    .topic-name { font-size: 14px; }
+    .topic-freq { font-size: 8.5px; padding: 2px 7px; }
+    .topic-desc { font-size: 11.5px; margin-bottom: 12px; }
+    .topic-examples-label { font-size: 8.5px; }
+    .topic-examples li { font-size: 11px; gap: 6px; }
+    .topic-format-row { margin-top: 12px; gap: 5px; }
+
+    /* Format tags */
+    .fmt { font-size: 8.5px; padding: 2px 7px; }
+
+    /* Section heads */
+    .section-head { padding: 14px 5vw 12px; gap: 4px; }
+    .section-title { font-size: 16px; }
+    .section-sub { font-size: 8.5px; display: none; }
+
+    /* Post content */
+    .post-content { padding: 16px 5vw; gap: 16px; }
+    .post-bucket { font-size: 8.5px; letter-spacing: 0.12em; }
+    .post-title { font-size: 14px; margin-bottom: 12px; }
+    .post-format-row { margin-bottom: 10px; }
+    .research-kicker, .why-kicker { font-size: 8.5px; }
+    .research-body, .why-body { font-size: 11.5px; }
+    .post-research { padding: 10px; margin-bottom: 12px; }
+    .why-works { padding: 10px; }
+
+    /* Slides */
+    .slides-label { font-size: 8.5px; margin-bottom: 8px; }
+    .slides-list { margin-bottom: 12px; }
+    .slide-i { min-width: 28px; font-size: 8.5px; padding: 8px 8px; padding-top: 9px; }
+    .slide-t { font-size: 11.5px; padding: 8px 10px; }
+    .slide-item { font-size: 11.5px; }
+
+    /* CTA */
+    .post-cta { font-size: 11.5px; padding: 10px; }
+
+    /* Ideas intro */
+    .ideas-intro { padding: 14px 5vw; }
+    .ideas-intro p { font-size: 12.5px; }
+
+    /* Table */
+    table { min-width: 420px; }
+    th { font-size: 8.5px; padding: 9px 10px; }
+    td { font-size: 11.5px; padding: 10px 10px; }
+
+    /* Footer */
+    footer { padding: 14px 5vw; }
+    .footer-brand { font-size: 14px; }
+    .footer-meta { font-size: 8.5px; }
+  }
+
+  /* ── 5. Small mobile (≤ 360px) ── */
+  @media (max-width: 360px) {
+    .header-title { font-size: 20px; }
+    .stat-n { font-size: 20px; }
+    .topic-name { font-size: 13px; }
+    .post-title { font-size: 13px; }
+    .topic-card { padding: 14px 4vw; }
+    .post-content { padding: 14px 4vw; }
+    .section-head { padding: 12px 4vw 10px; }
+    .section-title { font-size: 15px; }
+    .nav-list a { font-size: 10px; }
+    table { min-width: 360px; }
+    th { padding: 8px; font-size: 8px; }
+    td { padding: 9px 8px; font-size: 11px; }
+  }
+</style>
+</head>
+<body>
+
+<!-- ═══ HEADER ═══ -->
+<header>
+  <div>
+    <div class="header-kicker">Instagram Content Strategy </div>
+    <h1 class="header-title">Traction <span>Studios</span><br>Content Plan</h1>
+  </div>
+  <div class="header-meta">
+    8 Content Topics<br>
+    10 Planned Posts<br>
+  </div>
+</header>
+
+<!-- ═══ STATS STRIP ═══ -->
+<div class="stats-strip">
+  <div class="stat-cell">
+    <div class="stat-n">AED <em>9.7B</em></div>
+    <div class="stat-l">UAE Digital Ad Market</div>
+  </div>
+  <div class="stat-cell">
+    <div class="stat-n"><em>80.1</em>%</div>
+    <div class="stat-l">UAE Instagram Penetration</div>
+  </div>
+  <div class="stat-cell">
+    <div class="stat-n"><em>3.1</em>×</div>
+    <div class="stat-l">Carousel vs. Single Engagement</div>
+  </div>
+  <div class="stat-cell">
+    <div class="stat-n"><em>74</em>%</div>
+    <div class="stat-l">Gen Z Discover Brands on Instagram</div>
+  </div>
+</div>
+
+<!-- ═══ BODY LAYOUT ═══ -->
+<div class="body-wrap">
+
+  <!-- SIDEBAR -->
+  <aside>
+    <div class="aside-section-block">
+      <div class="aside-label">Sections</div>
+      <ul class="nav-list">
+        <li><a class="section-link" href="#topics">&#9658; Content Topics</a></li>
+        <li><a class="section-link" href="#overview">&#9658; Posts Overview</a></li>
+        <li><a class="section-link" href="#posts">&#9658; Full Breakdown</a></li>
+      </ul>
+    </div>
+
+    <hr class="aside-divider">
+
+    <div class="aside-section-block">
+      <div class="aside-label">Jump to Post</div>
+      <ul class="nav-list">
+        <li><a href="#p01"><span class="n">01</span> Dubai Ad Market Stat</a></li>
+        <li><a href="#p02"><span class="n">02</span> Google Ads Cost Dubai</a></li>
+        <li><a href="#p03"><span class="n">03</span> CPL Case Study</a></li>
+        <li><a href="#p04"><span class="n">04</span> Free SEO Tools</a></li>
+        <li><a href="#p05"><span class="n">05</span> Traffic vs Conversion</a></li>
+        <li><a href="#p06"><span class="n">06</span> The AED 500 Meme</a></li>
+        <li><a href="#p07"><span class="n">07</span> Gen Z &amp; Instagram SEO</a></li>
+        <li><a href="#p08"><span class="n">08</span> Launch Day BTS</a></li>
+        <li><a href="#p09"><span class="n">09</span> Carousel Stat Drop</a></li>
+        <li><a href="#p10"><span class="n">10</span> Switch Agency Signs</a></li>
+      </ul>
+    </div>
+
+    <hr class="aside-divider">
+
+    <div class="aside-section-block">
+      <div class="aside-label">Formats</div>
+      <div class="aside-legend-row-group">
+        <div class="legend-row"><span class="legend-dot dot-carousel"></span> Carousel</div>
+        <div class="legend-row"><span class="legend-dot dot-single"></span> Single Image</div>
+        <div class="legend-row"><span class="legend-dot dot-reel"></span> Reel</div>
+      </div>
+    </div>
+  </aside>
+
+  <!-- MAIN -->
+  <main>
+
+    <!-- ═══════════════════════════════════
+         SECTION 1 — CONTENT TOPICS / IDEAS BANK
+    ═══════════════════════════════════════ -->
+    <div class="section-head" id="topics">
+      <div class="section-title">Content Topics & Ideas Bank</div>
+      <div class="section-sub">8 categories · ongoing posting reference</div>
+    </div>
+
+    <div class="ideas-intro">
+      <p>These are the <strong>8 recurring content categories</strong> we can draw from every week. This will serve as the master reference for what to post, how often and in what format. The 10 planned posts in Section 2 are built from these buckets.</p>
+    </div>
+
+    <div class="topics-grid">
+
+      <!-- TOPIC 1 -->
+      <div class="topic-card">
+        <div class="topic-card-header">
+          <div class="topic-icon-title">
+            <span class="topic-emoji">📊</span>
+            <div class="topic-name">1. Data & Market Stats</div>
+          </div>
+          <span class="topic-freq">2× / week</span>
+        </div>
+        <p class="topic-desc">Lead with a bold number that stops the scroll, then give it local context. UAE and MENA-specific figures land harder than global averages as the audience recognises their market.</p>
+        <div class="topic-examples-label">Post Ideas:</div>
+        <ul class="topic-examples">
+          <li>UAE digital ad market hits AED 9.7B — what it means for small brands?</li>
+          <li>Average Google Ads CPC in Dubai vs the global benchmark</li>
+          <li>Carousels Get 3.1× More Engagement — The Proof</li>
+          <li>68% of online experiences start with search: the SEO case in one stat</li>
+          <li>Instagram penetration in UAE: 80.1% (which is the world's highest)</li>
+          <li>How much Dubai businesses spend on digital marketing annually?</li>
+        </ul>
+        <div class="topic-format-row">
+          <span class="topic-format-label">Best formats:</span>
+          <span class="fmt fmt-s">Single Image</span>
+          <span class="fmt fmt-c">Carousel</span>
+        </div>
+      </div>
+
+      <!-- TOPIC 2 -->
+      <div class="topic-card">
+        <div class="topic-card-header">
+          <div class="topic-icon-title">
+            <span class="topic-emoji">🎓</span>
+            <div class="topic-name">2. Education & How-Tos</div>
+          </div>
+          <span class="topic-freq">3× / week</span>
+        </div>
+        <p class="topic-desc">Teach the audience something they can act on today. Break down SEO concepts, explain how Meta's algorithm works, or demystify Google Ads.</p>
+        <div class="topic-examples-label">Post Ideas:</div>
+        <ul class="topic-examples">
+          <li>Why your Google Ads cost more in Dubai and how to fix it</li>
+          <li>How the Meta algorithm decides who sees your ads in 2026</li>
+          <li>SEO basics for Dubai businesses</li>
+          <li>74% of Gen Z Discovers Brands on Instagram — Is Yours Optimised for Search?</li>
+          <li>Arabic vs English keywords: when to use each in UAE campaigns</li>
+        </ul>
+        <div class="topic-format-row">
+          <span class="topic-format-label">Best formats:</span>
+          <span class="fmt fmt-c">Carousel</span>
+          <span class="fmt fmt-r">Reel</span>
+        </div>
+      </div>
+
+      <!-- TOPIC 3 -->
+      <div class="topic-card">
+        <div class="topic-card-header">
+          <div class="topic-icon-title">
+            <span class="topic-emoji">🏆</span>
+            <div class="topic-name">3. Results & Case Studies</div>
+          </div>
+          <span class="topic-freq">1–2× / week</span>
+        </div>
+        <p class="topic-desc">Real numbers from real campaigns. Show the before and after: CPL dropped, ROAS improved, a brand climbed from page 7 to page 1.</p>
+        <div class="topic-examples-label">Post Ideas:</div>
+        <ul class="topic-examples">
+          <li>CPL reduced from AED 80 to AED 30 — how we did it</li>
+          <li>Dubai F&B brand: from AED 5K to AED 30K monthly ROAS</li>
+          <li>Real estate client ranked Page 1 for 3 keywords in 90 days</li>
+          <li>Monthly performance dashboard — what our clients see every week</li>
+        </ul>
+        <div class="topic-format-row">
+          <span class="topic-format-label">Best formats:</span>
+          <span class="fmt fmt-c">Carousel</span>
+        </div>
+      </div>
+
+      <!-- TOPIC 4 -->
+      <div class="topic-card">
+        <div class="topic-card-header">
+          <div class="topic-icon-title">
+            <span class="topic-emoji">🔧</span>
+            <div class="topic-name">4. Top Tools & Resources</div>
+          </div>
+          <span class="topic-freq">1× / week</span>
+        </div>
+        <p class="topic-desc">Recommend free SEO tools, landing page builders that support Arabic, or Google Ads scripts that save hours.</p>
+        <div class="topic-examples-label">Post Ideas:</div>
+        <ul class="topic-examples">
+          <li>5 free SEO tools every Dubai business should bookmark</li>
+          <li>Best landing page builders that support Arabic + English layouts</li>
+          <li>Google Ads scripts that save 3 hours of manual work per week</li>
+          <li>Tools we use internally at Traction Studios (our actual stack)</li>
+          <li>Free creative testing tools for Meta Ads — ranked</li>
+          <li>Top keyword research tools for UAE and Gulf markets</li>
+        </ul>
+        <div class="topic-format-row">
+          <span class="topic-format-label">Best formats:</span>
+          <span class="fmt fmt-c">Carousel</span>
+          <span class="fmt fmt-s">Single Image</span>
+        </div>
+      </div>
+
+      <!-- TOPIC 5 -->
+      <div class="topic-card">
+        <div class="topic-card-header">
+          <div class="topic-icon-title">
+            <span class="topic-emoji">🧠</span>
+            <div class="topic-name">5. Thought Leadership & Hot Takes</div>
+          </div>
+          <span class="topic-freq">2× / week</span>
+        </div>
+        <p class="topic-desc">Share opinions, not just information. Call out bad practices and make bold predictions about digital marketing. <strong>Aim: spark debates to earn more reach.</strong></p>
+        <div class="topic-examples-label">Post Ideas:</div>
+        <ul class="topic-examples">
+          <li>Why chasing followers is the wrong Instagram metric in 2026</li>
+          <li>The biggest mistake Dubai brands make when running Meta Ads</li>
+          <li>Most UAE brands don't need more traffic — they need better conversion</li>
+          <li>Prediction: where MENA digital marketing is heading in the next 2 years</li>
+        </ul>
+        <div class="topic-format-row">
+          <span class="topic-format-label">Best formats:</span>
+          <span class="fmt fmt-r">Reel</span>
+          <span class="fmt fmt-s">Single Image</span>
+        </div>
+      </div>
+
+      <!-- TOPIC 6 -->
+      <div class="topic-card">
+        <div class="topic-card-header">
+          <div class="topic-icon-title">
+            <span class="topic-emoji">😄</span>
+            <div class="topic-name">6. Relatable Humor & Memes</div>
+          </div>
+          <span class="topic-freq">2× / week</span>
+        </div>
+        <p class="topic-desc">Lean into everyday agency-life frustrations to use humour as a way to connect with Dubai marketers.</p>
+        <div class="topic-examples-label">Post Ideas:</div>
+        <ul class="topic-examples">
+          <li>"Go viral. Budget: AED 500. Timeline: by Friday." — the meme post</li>
+          <li>Explaining SEO to a client who just wants to rank #1 by tomorrow</li>
+          <li>Client feedback: "It's good but can you make it more… creative?"</li>
+          <li>Agency life: when the campaign finally goes live and you refresh every 30 seconds</li>
+          <li>The difference between what clients ask for vs. what they actually need</li>
+          <li>Monday morning energy at a digital marketing agency</li>
+        </ul>
+        <div class="topic-format-row">
+          <span class="topic-format-label">Best formats:</span>
+          <span class="fmt fmt-s">Single Image</span>
+          <span class="fmt fmt-r">Reel</span>
+        </div>
+      </div>
+
+      <!-- TOPIC 7 -->
+      <div class="topic-card">
+        <div class="topic-card-header">
+          <div class="topic-icon-title">
+            <span class="topic-emoji">🌟</span>
+            <div class="topic-name">7. Behind the Scenes & Agency Life</div>
+          </div>
+          <span class="topic-freq">2× / week</span>
+        </div>
+        <p class="topic-desc">BTS content to humanise Traction Studios and makes it feel real. Keep it authentic to build trust.</p>
+        <div class="topic-examples-label">Post Ideas:</div>
+        <ul class="topic-examples">
+          <li>What Campaign Launch Day Actually Looks Like</li>
+          <li>Meet the team: who works on your campaigns and what they specialise in</li>
+          <li>Our weekly strategy meeting: how we plan campaigns for the clients</li>
+          <li>The tools open on our screens right now (screenshot + explainer)</li>
+          <li>Day in the life of a performance marketing manager in Dubai</li>
+        </ul>
+        <div class="topic-format-row">
+          <span class="topic-format-label">Best formats:</span>
+          <span class="fmt fmt-r">Reel</span>
+          <span class="fmt fmt-c">Carousel</span>
+        </div>
+      </div>
+
+      <!-- TOPIC 8 -->
+      <div class="topic-card">
+        <div class="topic-card-header">
+          <div class="topic-icon-title">
+            <span class="topic-emoji">📣</span>
+            <div class="topic-name">8. Brand News & Agency Updates</div>
+          </div>
+          <span class="topic-freq">1× / week</span>
+        </div>
+        <p class="topic-desc">Regular updates on what's happening at Traction Studios. These will be benefit-led and honest.</p>
+        <div class="topic-examples-label">Post Ideas:</div>
+        <ul class="topic-examples">
+          <li>New client win in [industry] — welcome to the Traction family</li>
+          <li>We're hiring — what it's like to work at Traction Studios</li>
+          <li>3 Signs You Need to Switch Your Dubai Agency</li>
+          <li>Year in review — campaigns run, budgets managed, results delivered</li>
+        </ul>
+        <div class="topic-format-row">
+          <span class="topic-format-label">Best formats:</span>
+          <span class="fmt fmt-c">Carousel</span>
+          <span class="fmt fmt-s">Single Image</span>
+          <span class="fmt fmt-r">Reel</span>
+        </div>
+      </div>
+
+    </div>
+    <!-- end topics grid -->
+
+
+    <!-- ═══════════════════════════════════
+         SECTION 2 — POSTS OVERVIEW TABLE
+    ═══════════════════════════════════════ -->
+    <div class="section-head" id="overview">
+      <div class="section-title">10 Planned Posts — Overview</div>
+      <div class="section-sub">drawn from the 8 topic buckets above</div>
+    </div>
+
+    <div class="table-wrap">
+      <table>
+        <thead>
+          <tr>
+            <th>#</th>
+            <th>Post Topic</th>
+            <th>Content Bucket</th>
+            <th>Format</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td class="td-num">01</td>
+            <td class="td-topic">Dubai's AED 9.7B Digital Ad Market — Stat Drop</td>
+            <td class="td-bucket">📊 Data & Stats</td>
+            <td><span class="fmt fmt-s">Single Image</span></td>
+          </tr>
+          <tr>
+            <td class="td-num">02</td>
+            <td class="td-topic">Why Your Google Ads Cost More in Dubai</td>
+            <td class="td-bucket">🎓 Education</td>
+            <td><span class="fmt fmt-c">Carousel</span></td>
+          </tr>
+          <tr>
+            <td class="td-num">03</td>
+            <td class="td-topic">AED 80 → AED 30 CPL: The Case Study</td>
+            <td class="td-bucket">🏆 Results & Case Studies</td>
+            <td><span class="fmt fmt-c">Carousel</span></td>
+          </tr>
+          <tr>
+            <td class="td-num">04</td>
+            <td class="td-topic">5 Free SEO Tools Every Dubai Business Should Use</td>
+            <td class="td-bucket">🔧 Tools & Resources</td>
+            <td><span class="fmt fmt-c">Carousel</span></td>
+          </tr>
+          <tr>
+            <td class="td-num">05</td>
+            <td class="td-topic">Hot Take: You Need Conversion, Not More Traffic</td>
+            <td class="td-bucket">🧠 Thought Leadership</td>
+            <td><span class="fmt fmt-r">Reel</span></td>
+          </tr>
+          <tr>
+            <td class="td-num">06</td>
+            <td class="td-topic">"Go Viral. Budget? AED 500." — The Meme Post</td>
+            <td class="td-bucket">😄 Humor & Memes</td>
+            <td><span class="fmt fmt-s">Single Image</span></td>
+          </tr>
+          <tr>
+            <td class="td-num">07</td>
+            <td class="td-topic">74% of Gen Z Discovers Brands on Instagram</td>
+            <td class="td-bucket">🎓 Education</td>
+            <td><span class="fmt fmt-c">Carousel</span></td>
+          </tr>
+          <tr>
+            <td class="td-num">08</td>
+            <td class="td-topic">What Campaign Launch Day Actually Looks Like</td>
+            <td class="td-bucket">🌟 Behind the Scenes</td>
+            <td><span class="fmt fmt-r">Reel + Story</span></td>
+          </tr>
+          <tr>
+            <td class="td-num">09</td>
+            <td class="td-topic">Carousels Get 3.1× More Engagement — The Proof</td>
+            <td class="td-bucket">📊 Data & Stats</td>
+            <td><span class="fmt fmt-s">Single Image</span></td>
+          </tr>
+          <tr>
+            <td class="td-num">10</td>
+            <td class="td-topic">3 Signs You Need to Switch Your Dubai Agency</td>
+            <td class="td-bucket">📣 Brand & Agency Updates</td>
+            <td><span class="fmt fmt-c">Carousel</span></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+
+    <!-- ═══════════════════════════════════
+         SECTION 3 — FULL POST BREAKDOWN
+    ═══════════════════════════════════════ -->
+    <div class="section-head" id="posts">
+      <div class="section-title">Full Post Breakdown</div>
+      <div class="section-sub">research basis · slide structure · cta</div>
+    </div>
+
+    <!-- POST 01 -->
+    <div class="post-row" id="p01">
+      <div class="post-num-col"><span class="post-num-label">Post 01</span></div>
+      <div class="post-content">
+        <div class="post-left">
+          <div class="post-bucket">📊 Data & Stats</div>
+          <div class="post-format-row"><span class="fmt fmt-s">Single Image</span></div>
+          <div class="post-title">"Dubai's Digital Ad Market Is Worth AED 9.7 Billion — And Most Brands Are Leaving Money on the Table"</div>
+          <div class="post-research">
+            <div class="research-kicker">Research Basis</div>
+            <div class="research-body">The UAE digital advertising market is among the <strong>fastest-growing in MENA</strong>. Dubai CPCs sit <strong>20–40% above global averages</strong> due to high competition and purchasing power — the market is real, lucrative, and punishing for brands that sit it out.</div>
+          </div>
+          <div class="why-works">
+            <div class="why-kicker">Why It Will Perform</div>
+            <div class="why-body">Single bold stats are among the most shared formats on Instagram. Screenshot-worthy, zero explanation needed. Positions Traction Studios as informed about the UAE market from day one.</div>
+          </div>
+        </div>
+        <div class="post-right">
+          <div class="slides-label"><span>What to Include</span></div>
+          <ul class="slides-list">
+            <li class="slide-item"><span class="slide-i">→</span><span class="slide-t">Hero visual: "AED 9.7B" fills the entire frame — nothing competes for attention</span></li>
+            <li class="slide-item"><span class="slide-i">→</span><span class="slide-t">Sub-line: "UAE's digital ad market in 2026. Your competitors are already in."</span></li>
+            <li class="slide-item"><span class="slide-i">→</span><span class="slide-t">Two lines of insight — what the number means for brands not yet investing in paid digital</span></li>
+            <li class="slide-item"><span class="slide-i">→</span><span class="slide-t">Brand watermark + subtle link-in-bio nudge at the bottom</span></li>
+          </ul>
+          <div class="post-cta"><span class="cta-icon">💬</span> "Is your brand getting its share? Drop 👇 in comments."</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- POST 02 -->
+    <div class="post-row" id="p02">
+      <div class="post-num-col"><span class="post-num-label">Post 02</span></div>
+      <div class="post-content">
+        <div class="post-left">
+          <div class="post-bucket">🎓 Education</div>
+          <div class="post-format-row"><span class="fmt fmt-c">7-Slide Carousel</span></div>
+          <div class="post-title">"Why Your Google Ads Cost More in Dubai (And How to Fix It)"</div>
+          <div class="post-research">
+            <div class="research-kicker">Research Basis</div>
+            <div class="research-body">Dubai CPCs range <strong>AED 8–45 in real estate</strong> and <strong>AED 20+ in accounting</strong>. Core reasons: mixing English and Arabic in one campaign destroys relevance score; broad match keywords waste budget; ignoring Quality Score directly inflates CPC. Separate campaigns per language are required for efficiency in the UAE.</div>
+          </div>
+          <div class="why-works">
+            <div class="why-kicker">Why It Will Perform</div>
+            <div class="why-body">Carousels hold a 0.55% engagement rate — the highest format in 2025. "Mistakes" posts earn the most saves because people return to them. Speaks directly to business owners spending money on ads right now.</div>
+          </div>
+        </div>
+        <div class="post-right">
+          <div class="slides-label"><span>Slide Breakdown</span><span class="fmt fmt-c">7 slides</span></div>
+          <ul class="slides-list">
+            <li class="slide-item"><span class="slide-i">01</span><span class="slide-t">Hook: "Running Google Ads in Dubai? You're probably overpaying." — set the pain point immediately</span></li>
+            <li class="slide-item"><span class="slide-i">02</span><span class="slide-t">Mistake 1: Mixing English + Arabic in one campaign — destroys relevance score</span></li>
+            <li class="slide-item"><span class="slide-i">03</span><span class="slide-t">Mistake 2: Broad keywords — "digital marketing Dubai" wastes budget vs. specific intent terms</span></li>
+            <li class="slide-item"><span class="slide-i">04</span><span class="slide-t">Mistake 3: No negative keyword list — paying for irrelevant research traffic</span></li>
+            <li class="slide-item"><span class="slide-i">05</span><span class="slide-t">Mistake 4: Low Quality Score on landing page — Google automatically charges more</span></li>
+            <li class="slide-item"><span class="slide-i">06</span><span class="slide-t">The fix for each mistake — one clear action per panel</span></li>
+            <li class="slide-item"><span class="slide-i">07</span><span class="slide-t">Closer: "We audited 20+ Dubai accounts. This showed up every time." + CTA</span></li>
+          </ul>
+          <div class="post-cta"><span class="cta-icon">💬</span> "Save this before your next campaign goes live."</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- POST 03 -->
+    <div class="post-row" id="p03">
+      <div class="post-num-col"><span class="post-num-label">Post 03</span></div>
+      <div class="post-content">
+        <div class="post-left">
+          <div class="post-bucket">🏆 Results & Case Studies</div>
+          <div class="post-format-row"><span class="fmt fmt-c">7-Slide Carousel</span></div>
+          <div class="post-title">"From AED 80 CPL to AED 30 — How We Cut a Dubai Brand's Lead Cost by 60%"</div>
+          <div class="post-research">
+            <div class="research-kicker">Research Basis</div>
+            <div class="research-body">Global average CPL for Google Ads is <strong>$70 (≈ AED 257)</strong> — cutting it to AED 30 is a genuinely exceptional result. Research confirms <strong>60% CPL reductions are achievable</strong> through audience restructuring, creative split testing, and landing page CRO. Not aspirational — documented in real Dubai campaign data.</div>
+          </div>
+          <div class="why-works">
+            <div class="why-kicker">Why It Will Perform</div>
+            <div class="why-body">Nothing converts a prospect faster than proof. Before/after formats are psychologically compelling. Case studies generate trust and inbound leads simultaneously — the most efficient content type for a performance agency.</div>
+          </div>
+        </div>
+        <div class="post-right">
+          <div class="slides-label"><span>Slide Breakdown</span><span class="fmt fmt-c">7 slides</span></div>
+          <ul class="slides-list">
+            <li class="slide-item"><span class="slide-i">01</span><span class="slide-t">Lead with the result: "CPL: AED 80 → AED 30. In 6 weeks." — never bury the outcome</span></li>
+            <li class="slide-item"><span class="slide-i">02</span><span class="slide-t">The problem: high CPL, low-intent leads, budget going to waste</span></li>
+            <li class="slide-item"><span class="slide-i">03</span><span class="slide-t">Fix 1: Audience restructure — separated cold traffic from retargeting pools</span></li>
+            <li class="slide-item"><span class="slide-i">04</span><span class="slide-t">Fix 2: Creative split test — 4 ad variants tested, 1 outperformed the rest by 3×</span></li>
+            <li class="slide-item"><span class="slide-i">05</span><span class="slide-t">Fix 3: Landing page CRO — removed friction, added trust signals, improved mobile speed</span></li>
+            <li class="slide-item"><span class="slide-i">06</span><span class="slide-t">The final numbers: before/after CPL, total leads, budget — visual comparison</span></li>
+            <li class="slide-item"><span class="slide-i">07</span><span class="slide-t">"Results like this aren't luck. They're a system." + audit CTA</span></li>
+          </ul>
+          <div class="post-cta"><span class="cta-icon">💬</span> "DM us 'AUDIT' for a free account review."</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- POST 04 -->
+    <div class="post-row" id="p04">
+      <div class="post-num-col"><span class="post-num-label">Post 04</span></div>
+      <div class="post-content">
+        <div class="post-left">
+          <div class="post-bucket">🔧 Tools & Resources</div>
+          <div class="post-format-row"><span class="fmt fmt-c">7-Slide Carousel</span></div>
+          <div class="post-title">"5 Free SEO Tools Every Dubai Business Owner Should Bookmark"</div>
+          <div class="post-research">
+            <div class="research-kicker">Research Basis</div>
+            <div class="research-body">Tool roundups are the <strong>most saved content type</strong> on Instagram. In the UAE, <strong>68% of online experiences start with search</strong>. Typical SEO agency costs in Dubai run <strong>AED 1,500–10,000/month</strong> — free tools that deliver real value are genuinely useful to any business owner evaluating their options.</div>
+          </div>
+          <div class="why-works">
+            <div class="why-kicker">Why It Will Perform</div>
+            <div class="why-body">Signals genuine helpfulness, not self-promotion. High saves means repeated algorithm visibility. Positions Traction Studios as the expert worth hiring once the audience has used the free options and wants professional execution.</div>
+          </div>
+        </div>
+        <div class="post-right">
+          <div class="slides-label"><span>Slide Breakdown</span><span class="fmt fmt-c">7 slides</span></div>
+          <ul class="slides-list">
+            <li class="slide-item"><span class="slide-i">01</span><span class="slide-t">Hook: "You don't need AED 500/month in tools. Start here." — instant value signal</span></li>
+            <li class="slide-item"><span class="slide-i">02</span><span class="slide-t">Tool 1: Google Search Console — see what searches bring people to your site (free, official)</span></li>
+            <li class="slide-item"><span class="slide-i">03</span><span class="slide-t">Tool 2: Ubersuggest — keyword research with UAE-relevant volume and competition data</span></li>
+            <li class="slide-item"><span class="slide-i">04</span><span class="slide-t">Tool 3: AnswerThePublic — find what your Dubai audience is actually asking online</span></li>
+            <li class="slide-item"><span class="slide-i">05</span><span class="slide-t">Tool 4: Google PageSpeed Insights — 70%+ UAE searches are mobile; speed is a ranking factor</span></li>
+            <li class="slide-item"><span class="slide-i">06</span><span class="slide-t">Tool 5: Google Trends (UAE filter) — spot seasonal demand before competitors react</span></li>
+            <li class="slide-item"><span class="slide-i">07</span><span class="slide-t">Bonus: "Use these before hiring an SEO agency. You'll ask smarter questions and waste zero budget."</span></li>
+          </ul>
+          <div class="post-cta"><span class="cta-icon">💬</span> "Save this 🔖 — thank us later."</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- POST 05 -->
+    <div class="post-row" id="p05">
+      <div class="post-num-col"><span class="post-num-label">Post 05</span></div>
+      <div class="post-content">
+        <div class="post-left">
+          <div class="post-bucket">🧠 Thought Leadership</div>
+          <div class="post-format-row"><span class="fmt fmt-r">Reel — under 30s</span></div>
+          <div class="post-title">"Hot Take: Most UAE Brands Don't Need More Traffic — They Need Better Conversion"</div>
+          <div class="post-research">
+            <div class="research-kicker">Research Basis</div>
+            <div class="research-body">Average Google Ads conversion rate globally is <strong>3.75%</strong> — optimal campaigns hit 5–11%. That means even well-trafficked sites lose 89–96% of visitors without a single action. Dubai businesses frequently pour budget into traffic while landing pages lack trust signals, slow on mobile, and have no clear CTA.</div>
+          </div>
+          <div class="why-works">
+            <div class="why-kicker">Why It Will Perform</div>
+            <div class="why-body">Contrarian hot takes consistently earn comments from both agreement and debate — both boost reach. Unpolished, direct-to-camera style outperforms produced Reels per 2025 data. Filmable in one take with text overlays.</div>
+          </div>
+        </div>
+        <div class="post-right">
+          <div class="slides-label"><span>Reel Structure</span><span class="fmt fmt-r">timed</span></div>
+          <ul class="slides-list">
+            <li class="slide-item"><span class="slide-i">0s</span><span class="slide-t">Text on screen: "Unpopular opinion incoming…" — hold 2 seconds, pattern interrupt</span></li>
+            <li class="slide-item"><span class="slide-i">4s</span><span class="slide-t">The take: "You don't have a traffic problem. You have a conversion problem."</span></li>
+            <li class="slide-item"><span class="slide-i">9s</span><span class="slide-t">Stat: "Average conversion rate: 3.75%. 96% of your visitors leave without acting."</span></li>
+            <li class="slide-item"><span class="slide-i">17s</span><span class="slide-t">Point: more traffic into a broken funnel burns more budget, faster</span></li>
+            <li class="slide-item"><span class="slide-i">24s</span><span class="slide-t">End frame: "Fix the funnel before you fuel the fire." + brand tag</span></li>
+          </ul>
+          <div class="post-cta"><span class="cta-icon">💬</span> Captions on screen throughout. No audio dependency. Brand watermark at end.</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- POST 06 -->
+    <div class="post-row" id="p06">
+      <div class="post-num-col"><span class="post-num-label">Post 06</span></div>
+      <div class="post-content">
+        <div class="post-left">
+          <div class="post-bucket">😄 Humor & Memes</div>
+          <div class="post-format-row"><span class="fmt fmt-s">Single Image</span></div>
+          <div class="post-title">"Every Dubai Client at Some Point 😭"</div>
+          <div class="post-research">
+            <div class="research-kicker">Research Basis</div>
+            <div class="research-body"><strong>67% of Gen Z and Millennials skip ads unless entertaining, relatable, or educational.</strong> Humor posts carry the highest share-to-impression ratio on Instagram. Mad Over Marketing — the 1.4M follower benchmark page from the strategy research — built its audience largely on relatable marketer memes. Fastest format for organic discovery.</div>
+          </div>
+          <div class="why-works">
+            <div class="why-kicker">Why It Will Perform</div>
+            <div class="why-body">Humor expands reach exponentially — marketers tag colleagues, share in group chats, screenshot. Every share is a brand impression. Single images have the highest organic share rate of any Instagram format.</div>
+          </div>
+        </div>
+        <div class="post-right">
+          <div class="slides-label"><span>What to Include</span></div>
+          <ul class="slides-list">
+            <li class="slide-item"><span class="slide-i">→</span><span class="slide-t">Meme format: client says — "I want to go viral. Budget? AED 500. Timeline? By Friday."</span></li>
+            <li class="slide-item"><span class="slide-i">→</span><span class="slide-t">Agency character reaction: visible internal screaming / dead stare</span></li>
+            <li class="slide-item"><span class="slide-i">→</span><span class="slide-t">Clean and brand-safe — the joke is about the situation, not any specific client</span></li>
+            <li class="slide-item"><span class="slide-i">→</span><span class="slide-t">Small Traction Studios watermark bottom right — every share = brand impression</span></li>
+          </ul>
+          <div class="post-cta"><span class="cta-icon">💬</span> "If you know, you know. Tag a client… just kidding 😅 #AgencyLife #DubaiMarketing"</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- POST 07 -->
+    <div class="post-row" id="p07">
+      <div class="post-num-col"><span class="post-num-label">Post 07</span></div>
+      <div class="post-content">
+        <div class="post-left">
+          <div class="post-bucket">🎓 Education</div>
+          <div class="post-format-row"><span class="fmt fmt-c">6-Slide Carousel</span></div>
+          <div class="post-title">"74% of Gen Z Discovers Brands on Instagram — Is Yours Optimised for Search?"</div>
+          <div class="post-research">
+            <div class="research-kicker">Research Basis</div>
+            <div class="research-body"><strong>74% of Gen Z uses Instagram for product discovery.</strong> UAE has an <strong>80.1% Instagram penetration rate</strong> — world's highest. Gen Z now overtakes Millennials as Instagram's largest user group. Instagram's Explore feed uses keyword-based ranking — bio, alt text, and caption keywords directly influence local search visibility.</div>
+          </div>
+          <div class="why-works">
+            <div class="why-kicker">Why It Will Perform</div>
+            <div class="why-body">Surprises even digital-savvy business owners — most still treat Instagram as purely social. Surprise + actionable tips = high saves. UAE-specific context makes it locally relevant, not generic global advice.</div>
+          </div>
+        </div>
+        <div class="post-right">
+          <div class="slides-label"><span>Slide Breakdown</span><span class="fmt fmt-c">6 slides</span></div>
+          <ul class="slides-list">
+            <li class="slide-item"><span class="slide-i">01</span><span class="slide-t">Stat as scroll-stopper: "74% of Gen Z discovers brands on Instagram before Google." — massive, bold</span></li>
+            <li class="slide-item"><span class="slide-i">02</span><span class="slide-t">What this means: Instagram is now a search engine, not just a social feed</span></li>
+            <li class="slide-item"><span class="slide-i">03</span><span class="slide-t">Tip 1: Bio optimisation — 150 characters to include search-relevant keywords naturally</span></li>
+            <li class="slide-item"><span class="slide-i">04</span><span class="slide-t">Tip 2: Alt text on every post — Instagram reads it for Explore ranking; most brands skip it entirely</span></li>
+            <li class="slide-item"><span class="slide-i">05</span><span class="slide-t">Tip 3: Content topic consistency — algorithm clusters your account by theme; depth beats breadth</span></li>
+            <li class="slide-item"><span class="slide-i">06</span><span class="slide-t">Closer: "Instagram SEO isn't the future. It's already happening." + CTA</span></li>
+          </ul>
+          <div class="post-cta"><span class="cta-icon">💬</span> "Is your Instagram optimised for search? Comment YES or NO 👇"</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- POST 08 -->
+    <div class="post-row" id="p08">
+      <div class="post-num-col"><span class="post-num-label">Post 08</span></div>
+      <div class="post-content">
+        <div class="post-left">
+          <div class="post-bucket">🌟 Behind the Scenes</div>
+          <div class="post-format-row"><span class="fmt fmt-r">Reel + Story</span></div>
+          <div class="post-title">"What Actually Happens on Campaign Launch Day at Traction Studios"</div>
+          <div class="post-research">
+            <div class="research-kicker">Research Basis</div>
+            <div class="research-body">Unpolished, authentic Reels <strong>consistently outperform heavily produced content</strong> — confirmed in a 2025 study of 10,000 posts. BTS content humanises agency brands, critical in Dubai's crowded agency market where trust is the primary purchase driver. Brands engaging within 24 hours of posting see <strong>47% higher future engagement.</strong></div>
+          </div>
+          <div class="why-works">
+            <div class="why-kicker">Why It Will Perform</div>
+            <div class="why-body">People don't hire agencies — they hire people. BTS makes the emotional case for Traction Studios. In a commoditised market, authenticity and personality are a genuine competitive advantage. This post earns DMs, not just likes.</div>
+          </div>
+        </div>
+        <div class="post-right">
+          <div class="slides-label"><span>Reel Structure</span></div>
+          <ul class="slides-list">
+            <li class="slide-item"><span class="slide-i">→</span><span class="slide-t">Open with unscripted team moments — dashboard watching, Slack pinging, last-minute tweaks</span></li>
+            <li class="slide-item"><span class="slide-i">→</span><span class="slide-t">Text overlays narrate the arc: "Hour 1: nervous. Hour 3: watching data. Hour 6: 🚀"</span></li>
+            <li class="slide-item"><span class="slide-i">→</span><span class="slide-t">Show the real tension — honest and raw, not a polished montage</span></li>
+            <li class="slide-item"><span class="slide-i">→</span><span class="slide-t">End frame: result flash — "Day 1 ROAS: 4.2x. Client message: 🤯"</span></li>
+            <li class="slide-item"><span class="slide-i">→</span><span class="slide-t">Repurpose as 3–5 Story frames for extended reach the same day</span></li>
+          </ul>
+          <div class="post-cta"><span class="cta-icon">💬</span> "Every campaign is a bet we make with full conviction. Here's what launch day really looks like."</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- POST 09 -->
+    <div class="post-row" id="p09">
+      <div class="post-num-col"><span class="post-num-label">Post 09</span></div>
+      <div class="post-content">
+        <div class="post-left">
+          <div class="post-bucket">📊 Data & Stats</div>
+          <div class="post-format-row"><span class="fmt fmt-s">Single Image</span></div>
+          <div class="post-title">"Carousels Generate 3.1× More Engagement Than Single Images — And Most Dubai Brands Ignore This"</div>
+          <div class="post-research">
+            <div class="research-kicker">Research Basis</div>
+            <div class="research-body">2025 verified data: carousels produce <strong>3.1× more engagement</strong> than single images, earn <strong>22–23% more saves</strong>, and generate <strong>18% more shares</strong>. Instagram also gives carousels a second algorithmic chance — showing slide 2 to users who scrolled past slide 1 without engaging.</div>
+          </div>
+          <div class="why-works">
+            <div class="why-kicker">Why It Will Perform</div>
+            <div class="why-body">Meta content: a post about Instagram formats, on Instagram. Self-referential in the best way — immediately demonstrates platform knowledge. Also implicitly positions carousels as the right format, which is exactly what Traction Studios produces for clients.</div>
+          </div>
+        </div>
+        <div class="post-right">
+          <div class="slides-label"><span>What to Include</span></div>
+          <ul class="slides-list">
+            <li class="slide-item"><span class="slide-i">→</span><span class="slide-t">Hero: "3.1×" fills the frame — nothing else competes visually</span></li>
+            <li class="slide-item"><span class="slide-i">→</span><span class="slide-t">Sub-line: "The engagement gap between carousels and single images. In 2025."</span></li>
+            <li class="slide-item"><span class="slide-i">→</span><span class="slide-t">Three stat bullets: 22% more saves · 18% more shares · 0.55% avg engagement rate</span></li>
+            <li class="slide-item"><span class="slide-i">→</span><span class="slide-t">Pro tip: "Slide 1 = hook. Slides 7–10 = max reach. Last slide = always a CTA."</span></li>
+            <li class="slide-item"><span class="slide-i">→</span><span class="slide-t">Source attribution + Traction Studios watermark</span></li>
+          </ul>
+          <div class="post-cta"><span class="cta-icon">💬</span> "Are you using carousels? If not — start today. The data is clear."</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- POST 10 -->
+    <div class="post-row" id="p10">
+      <div class="post-num-col"><span class="post-num-label">Post 10</span></div>
+      <div class="post-content">
+        <div class="post-left">
+          <div class="post-bucket">📣 Brand & Agency Updates</div>
+          <div class="post-format-row"><span class="fmt fmt-c">6-Slide Carousel</span></div>
+          <div class="post-title">"3 Signs You Need to Switch Your Digital Marketing Agency in Dubai"</div>
+          <div class="post-research">
+            <div class="research-kicker">Research Basis</div>
+            <div class="research-body">Dubai ranks among the <strong>top digital advertising markets in MENA</strong>. Most common client complaints: agencies report vanity metrics instead of CPL and ROAS, no transparency on ad spend, and recycled strategies without iteration. Healthy Google Ads accounts benchmark at <strong>2–4× ROAS</strong> — a clear bar to hold agencies accountable to.</div>
+          </div>
+          <div class="why-works">
+            <div class="why-kicker">Why It Will Perform</div>
+            <div class="why-body">Speaks directly to decision-makers already frustrated with their current agency — a warm, qualified audience. Educational enough to earn saves, while organically positioning Traction Studios as the transparent alternative. Soft CTA generates DMs from people genuinely ready to switch.</div>
+          </div>
+        </div>
+        <div class="post-right">
+          <div class="slides-label"><span>Slide Breakdown</span><span class="fmt fmt-c">6 slides</span></div>
+          <ul class="slides-list">
+            <li class="slide-item"><span class="slide-i">01</span><span class="slide-t">Hook: "Not every agency is built for growth. Here's how to tell." — earns attention from frustrated prospects</span></li>
+            <li class="slide-item"><span class="slide-i">02</span><span class="slide-t">Sign 1: They only talk about reach and impressions — never ROAS, CPL, or revenue attribution</span></li>
+            <li class="slide-item"><span class="slide-i">03</span><span class="slide-t">Sign 2: You don't have access to your own ad account — a major industry red flag</span></li>
+            <li class="slide-item"><span class="slide-i">04</span><span class="slide-t">Sign 3: Same strategy, different month — no iteration, no A/B tests, no creative refresh</span></li>
+            <li class="slide-item"><span class="slide-i">05</span><span class="slide-t">"You deserve an agency that treats your AED like their own AED."</span></li>
+            <li class="slide-item"><span class="slide-i">06</span><span class="slide-t">Soft CTA: "Free audit. No pitch deck. Just data." — low friction, high intent entry point</span></li>
+          </ul>
+          <div class="post-cta"><span class="cta-icon">💬</span> "DM us 'SWITCH' — free audit, no obligations."</div>
+        </div>
+      </div>
+    </div>
+
+  </main>
+</div>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-brand">Traction <span>Studios</span></div>
+  <div class="footer-meta">Instagram Content Plan</div>
+</footer>
+
+</body>
+</html>
